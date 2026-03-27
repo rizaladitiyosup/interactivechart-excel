@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portofolio — Rizal Aditiyo Supendi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    [data-theme="dark"] {
+      --bg:      #111110;
+      --surface: #191918;
+      --card:    #1e1e1c;
+      --text:    #e8e6e1;
+      --muted:   #6e6b64;
+      --subtle:  #3d3b36;
+      --accent:  #7eb59a;
+      --border:  #2a2926;
+      --nav-bg:  rgba(17,17,16,0.90);
+      --shadow:  0 8px 28px rgba(0,0,0,0.35);
+      --thumb-bg:#232321;
+    }
+    [data-theme="light"] {
+      --bg:      #f7f5f2;
+      --surface: #f0ede8;
+      --card:    #faf9f7;
+      --text:    #1c1a18;
+      --muted:   #7a766f;
+      --subtle:  #c8c3bb;
+      --accent:  #3d6b5e;
+      --border:  #e2ddd7;
+      --nav-bg:  rgba(247,245,242,0.92);
+      --shadow:  0 8px 24px rgba(0,0,0,0.07);
+      --thumb-bg:#e9e6e0;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6vw;
+      height: 60px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .nav-center { display: flex; gap: 2rem; list-style: none; }
+    .nav-center a {
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-center a:hover { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .badge {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-size: 0.73rem; color: var(--accent);
+      font-weight: 500; letter-spacing: 0.03em;
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+    .theme-btn {
+      width: 34px; height: 34px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, color 0.2s, background 0.3s;
+      font-size: 0.95rem;
+    }
+    .theme-btn:hover { border-color: var(--subtle); color: var(--text); }
+
+    /* SECTIONS */
+    section { padding: 96px 6vw; }
+    .container { max-width: 900px; }
+    .label {
+      font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 400; letter-spacing: 0.04em;
+      line-height: 1.0; margin-bottom: 0.4rem;
+    }
+    .rule {
+      width: 28px; height: 1px;
+      background: var(--subtle);
+      margin: 1.1rem 0 2rem;
+    }
+
+    /* HERO */
+    #home {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding-top: 120px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-tag {
+      font-size: 0.75rem; color: var(--muted);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .hero-tag::before {
+      content: ''; display: inline-block;
+      width: 18px; height: 1px;
+      background: var(--subtle);
+    }
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 400; line-height: 0.92;
+      letter-spacing: 0.03em; margin-bottom: 1.75rem;
+      color: var(--text);
+    }
+    h1 .accent { color: var(--accent); }
+    .hero-desc {
+      max-width: 480px; color: var(--muted);
+      font-size: 0.93rem; line-height: 1.75;
+      margin-bottom: 2.25rem;
+    }
+    .hero-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.6rem 1.3rem; border-radius: 6px;
+      font-family: 'Geist', sans-serif; font-size: 0.82rem;
+      font-weight: 400; cursor: pointer; text-decoration: none;
+      transition: all 0.2s; border: 1px solid transparent;
+    }
+    .btn-solid { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+    .btn-solid:hover { opacity: 0.85; }
+    .btn-ghost { background: transparent; color: var(--muted); border-color: var(--border); }
+    .btn-ghost:hover { color: var(--text); border-color: var(--subtle); }
+
+    /* EXCEL CHARTS */
+    #excel-charts { border-bottom: 1px solid var(--border); }
+    .qa-list { display: flex; flex-direction: column; gap: 3rem; }
+    .qa-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .qa-item:hover { border-color: var(--subtle); box-shadow: var(--shadow); }
+    .qa-header {
+      padding: 1.4rem 1.6rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .qa-num {
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.35rem;
+    }
+    .qa-question {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem; letter-spacing: 0.04em;
+      color: var(--text);
+    }
+    .qa-body { padding: 1.4rem 1.6rem; }
+    .qa-images { display: grid; gap: 1rem; margin-bottom: 1rem; }
+    .qa-images.single { grid-template-columns: 1fr; }
+    .qa-img {
+      width: 100%;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      display: block;
+      background: var(--thumb-bg);
+    }
+    .qa-insight {
+      background: var(--surface);
+      border-left: 2px solid var(--accent);
+      padding: 0.9rem 1.2rem;
+      border-radius: 0 6px 6px 0;
+      margin-top: 1rem;
+    }
+    .qa-insight p { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+
+    /* CONTACT */
+    #contact { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .contact-grid { display: flex; flex-direction: column; max-width: 520px; }
+    .contact-row {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none; color: var(--text);
+      transition: color 0.15s;
+    }
+    .contact-row:last-child { border-bottom: none; }
+    .contact-row:hover { color: var(--accent); }
+    .contact-type { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.09em; }
+    .contact-val { font-size: 0.88rem; margin-top: 0.1rem; }
+    .contact-arr { font-size: 0.78rem; color: var(--subtle); transition: transform 0.2s, color 0.2s; }
+    .contact-row:hover .contact-arr { transform: translate(2px,-2px); color: var(--accent); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.4rem 6vw;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      font-size: 0.73rem; color: var(--muted);
+    }
+    .back-to-top {
+      font-size: 0.73rem; color: var(--muted);
+      border: 1px solid var(--border); border-radius: 5px;
+      padding: 0.3rem 0.75rem; text-decoration: none;
+      transition: color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .back-to-top:hover { color: var(--text); border-color: var(--subtle); transform: translateY(-2px); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.show { opacity: 1; transform: none; }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      flex-direction: column; justify-content: center; align-items: center;
+      gap: 5px; width: 34px; height: 34px;
+      border-radius: 7px; border: 1px solid var(--border);
+      background: var(--surface); cursor: pointer; padding: 0;
+      transition: border-color 0.2s, background 0.3s; flex-shrink: 0;
+    }
+    .hamburger:hover { border-color: var(--subtle); }
+    .hamburger span {
+      display: block; width: 16px; height: 1.5px;
+      background: var(--muted); border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.2s ease, background 0.3s;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* MOBILE NAV */
+    .nav-mobile {
+      display: none; position: fixed;
+      top: 60px; left: 0; right: 0;
+      background: var(--nav-bg); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      z-index: 98; padding: 0.5rem 0;
+      transition: background 0.3s;
+    }
+    .nav-mobile.open { display: flex; flex-direction: column; }
+    .nav-mobile a {
+      padding: 0.75rem 6vw; font-size: 0.88rem; color: var(--muted);
+      text-decoration: none; border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .nav-mobile a:last-child { border-bottom: none; }
+    .nav-mobile a:hover { color: var(--text); }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .nav-center { display: none; }
+      .hamburger { display: flex; }
+      h1 { font-size: clamp(3rem, 14vw, 5rem); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <ul class="nav-center">
+    <li><a href="https://portofolio-rizaladitiyosupendi.netlify.app/">Home</a></li>
+    <li><a href="#excel-charts">Excel Charts</a></li>
+    <li><a href="#contact">Kontak</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="badge"><span class="badge-dot"></span>Data Analyst</span>
+    <button class="theme-btn" id="themeToggle" title="Toggle theme">☀</button>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-mobile" id="navMobile">
+  <a href="#home"         onclick="closeMobileNav()">Home</a>
+  <a href="#excel-charts" onclick="closeMobileNav()">Excel Charts</a>
+  <a href="#contact"      onclick="closeMobileNav()">Kontak</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="container">
+    <p class="hero-tag">Portofolio Data Analyst</p>
+    <h1>Rizal<br/>Aditiyo<br/><span class="accent">Supendi</span></h1>
+    <p class="hero-desc">
+      Membangun solusi analisis data yang interaktif dan mudah dipahami — dari Excel, SQL, Python hingga Power BI. Saat ini aktif mengembangkan portofolio sebagai Data Analyst.
+    </p>
+    <div class="hero-btns">
+      <a href="#excel-charts" class="btn btn-solid">Lihat Proyek →</a>
+      <a href="https://www.linkedin.com/in/rizal-aditiyo-supendi/" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- INTERACTIVE EXCEL CHARTS -->
+<section id="excel-charts">
+  <div class="container reveal">
+    <p class="label">Proyek — Excel</p>
+    <h2>Interactive Data<br/>Visualization<br/><span class="accent">with Excel</span></h2>
+    <div class="rule"></div>
+    <p style="max-width:560px; color:var(--muted); font-size:0.95rem; line-height:1.8; margin-bottom:2.5rem;">
+      Membangun chart dinamis dan interaktif di Excel menggunakan fitur kontrol bawaan — tanpa VBA, langsung bisa digunakan oleh siapa saja untuk eksplorasi data yang intuitif.
+    </p>
+
+    <div class="qa-list">
+
+      <!-- CARD 1: Scroll Bar & Spinner -->
+      <div class="qa-item">
+        <div class="qa-header">
+          <p class="qa-num">Excel · Form Controls · Linked Cell</p>
+          <p class="qa-question">Dynamic range control dengan Scroll Bar &amp; Spinner</p>
+        </div>
+        <div class="qa-body">
+          <div class="qa-images single">
+            <img class="qa-img" src="scrollbarspinnerchart.gif" alt="Demo Scroll Bar dan Spinner Chart — chart memperbarui data secara real-time saat scroll bar digeser"/>
+          </div>
+          <div class="qa-insight">
+            <p>
+              Membangun chart interaktif yang memungkinkan pengguna menggeser atau memutar nilai untuk memperbarui tampilan data secara real-time — cocok untuk analisis tren harian dan perbandingan antar periode. Chart ini menampilkan <strong>Daily Sales</strong> dengan rentang tanggal yang dapat digeser menggunakan Scroll Bar, dan jumlah baris data yang ditampilkan bisa dikontrol via Spinner.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2: Option Button -->
+      <div class="qa-item">
+        <div class="qa-header">
+          <p class="qa-num">Excel · Form Controls · Radio Button · INDEX/MATCH</p>
+          <p class="qa-question">Toggle tampilan data dengan Option Button</p>
+        </div>
+        <div class="qa-body">
+          <div class="qa-images single">
+            <img class="qa-img" src="optionbutton.gif" alt="Demo Option Button Chart — chart beralih antar segmen Consumer, Corporate, Home Office dengan satu klik"/>
+          </div>
+          <div class="qa-insight">
+            <p>
+              Membuat chart yang bisa beralih antara beberapa kategori atau metrik cukup dengan satu klik — memberikan pengalaman eksplorasi data yang intuitif tanpa formula yang rumit. Chart ini menampilkan <strong>Top Sub Category per Segment</strong> (Consumer, Corporate, Home Office) yang berubah otomatis saat Option Button dipilih.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3: Data Validation -->
+      <div class="qa-item">
+        <div class="qa-header">
+          <p class="qa-num">Excel · Data Validation · Dynamic Named Range</p>
+          <p class="qa-question">Dynamic chart dengan dropdown Data Validation</p>
+        </div>
+        <div class="qa-body">
+          <div class="qa-images single">
+            <img class="qa-img" src="datavalidation.gif" alt="Demo Data Validation Chart — chart memfilter Top Sub Category berdasarkan Region yang dipilih dari dropdown"/>
+          </div>
+          <div class="qa-insight">
+            <p>
+              Mengintegrasikan dropdown list berbasis Data Validation untuk memfilter dan menampilkan data tertentu secara otomatis — solusi ringan namun profesional untuk dashboard sederhana. Chart ini menampilkan <strong>Top Sub Category per Region</strong> yang difilter langsung dari dropdown tanpa makro atau coding tambahan.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container reveal">
+    <p class="label">Dibuat oleh</p>
+    <h2>Rizal Aditiyo<br/>Supendi</h2>
+    <div class="rule"></div>
+    <div class="contact-grid">
+      <a class="contact-row" href="https://www.linkedin.com/in/rizal-aditiyo-supendi/" target="_blank">
+        <div>
+          <p class="contact-type">LinkedIn</p>
+          <p class="contact-val">rizal-aditiyo-supendi</p>
+        </div>
+        <span class="contact-arr">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Rizal Aditiyo Supendi</span>
+  <a href="#home" class="back-to-top">↑ Back to top</a>
+  <span>Portofolio Data Analyst</span>
+</footer>
+
+<script>
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const navMobile    = document.getElementById('navMobile');
+
+  hamburgerBtn.addEventListener('click', () => {
+    hamburgerBtn.classList.toggle('open');
+    navMobile.classList.toggle('open');
+  });
+
+  function closeMobileNav() {
+    hamburgerBtn.classList.remove('open');
+    navMobile.classList.remove('open');
+  }
+
+  document.addEventListener('click', (e) => {
+    if (!hamburgerBtn.contains(e.target) && !navMobile.contains(e.target)) {
+      closeMobileNav();
+    }
+  });
+
+  const root = document.documentElement;
+  const btn  = document.getElementById('themeToggle');
+  btn.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    btn.textContent = next === 'dark' ? '☀' : '☾';
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+  }, { threshold: 0.07 });
+  reveals.forEach(r => io.observe(r));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-center a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--text)' : '';
+    });
+  });
+</script>
+</body>
+</html>
